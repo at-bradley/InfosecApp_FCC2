@@ -11,14 +11,21 @@ const bcrypt = require ('bcrypt');
 
 //START_ASYNC -do not remove notes, place code between correct pair of notes.
 
+const hash = bcrypt.hash(myPlaintextPassword, saltRounds, (err, hash) => {
+    /*Store hash in your db*/
+    return hash;
+  });
 
-
+  bcrypt.compare(myPlaintextPassword, hash, (err, res) => {
+    /*res == true or false*/
+    console.log(res);
+  });
 //END_ASYNC
 
 //START_SYNC
 
-
-
+const hash2 = bcrypt.hashSync(myPlaintextPassword, saltRounds);
+var result = bcrypt.compareSync(myPlaintextPassword, hash2);
 //END_SYNC
 
 
